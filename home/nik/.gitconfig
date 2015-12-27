@@ -1,0 +1,21 @@
+[user]
+	name = nikandfor
+	email = nikandfor@gmail.com
+[color]
+	ui = auto
+[core]
+	editor = vim
+[alias]
+	hist = log --pretty=format:\"%h %ad | %C(yellow)%s%C(green)%d%C(reset) [%an]\" --graph --date=short --date-order --all
+	st = status
+	co = checkout
+	ci = commit
+	br = branch
+[push]
+	default = current
+[credential]
+	helper = store
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
