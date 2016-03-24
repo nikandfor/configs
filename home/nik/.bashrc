@@ -115,16 +115,16 @@ export LD_LIBRARY_PATH=/usr/local/lib
 [ -z $JAVA_HOME ] && export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
 #IFS='\n'
 
-#export GOPATH=/home/nik/progrm/go
-#export GOBIN=$GOPATH/bin
-#export PATH=$PATH:$GOBIN
+export GOPATH=/home/nik/progrm/go
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:$GOBIN
 
 alias vagrant_env="export VAGRANT_HOME=./vagrant.d/"
 
+export PATH=$PATH:~/Downloads/protoc
+
 # The next line updates PATH for the Google Cloud SDK.
-source '/home/nik/.gcloud-sdk/google-cloud-sdk/path.bash.inc'
+source '/home/nik/Downloads/google-cloud-sdk/path.bash.inc'
 
 # The next line enables shell command completion for gcloud.
-source '/home/nik/.gcloud-sdk/google-cloud-sdk/completion.bash.inc'
-
-export PATH=$PATH:/home/nik/plutos/cpp/protobuf/install_dir/bin
+source '/home/nik/Downloads/google-cloud-sdk/completion.bash.inc'

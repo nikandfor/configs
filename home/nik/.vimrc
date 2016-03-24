@@ -49,10 +49,8 @@ let g:go_fmt_command = "goimports"
 
 let g:go_fmt_fail_silently = 1
 
+set completeopt=menu
 "let g:neocomplete#enable_at_startup = 1
-
-nmap <F8> :TagbarToggle<CR>
-
 
 let javaScript_fold=3 
 let php_folding=1
@@ -60,4 +58,4 @@ let sh_fold_enabled=1
 let vimsyn_folding='af'
 let xml_syntax_folding=1
 
-au BufNewFile,BufRead *.yaml,*yml source ~/.vim/syntax/yaml.vim
+"au BufNewFile,BufRead *.yaml,*yml source ~/.vim/syntax/yaml.vim
