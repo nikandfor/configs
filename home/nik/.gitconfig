@@ -1,12 +1,16 @@
 [user]
 	name = nikandfor
 	email = nikandfor@gmail.com
+	signingkey = 817D3804F9C0F547
 [color]
 	ui = auto
 [core]
 	editor = vim
+	excludesfile = /home/nik/.gitignore
 [alias]
 	hist = log --pretty=format:\"%h %ad | %C(yellow)%s%C(green)%d%C(reset) [%an]\" --graph --date=short --date-order --all
+	histonly = log --pretty=format:\"%h %ad | %C(yellow)%s%C(green)%d%C(reset) [%an]\" --graph --date=short --date-order
+	histsigned = log --pretty=format:\"%h %ad | %C(yellow)%s%C(green)%d%C(reset) [%an] %G?\" --graph --date=short --date-order --all
 	st = status
 	co = checkout
 	ci = commit
@@ -19,3 +23,5 @@
 	tool = vimdiff
 [merge]
 	tool = vimdiff
+[commit]
+	gpgsign = true

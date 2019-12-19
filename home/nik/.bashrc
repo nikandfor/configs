@@ -7,14 +7,14 @@
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
-HISTCONTROL=ignoredups:ignorespace
+HISTCONTROL=ignoredups:ignorespace:erasedups
 
 # append to the history file, don't overwrite it
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=100000
+HISTFILESIZE=1000000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -86,6 +86,9 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+#alias cd='cd -P'
+alias curl='curl -s'
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -112,19 +115,60 @@ fi
 export LS_COLORS=$LS_COLORS:"ow=34;40"
 
 export LD_LIBRARY_PATH=/usr/local/lib
-[ -z $JAVA_HOME ] && export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
-#IFS='\n'
 
-export GOPATH=/home/nik/progrm/go
+[ -z $JAVA_HOME ] && export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+
+if [ -z $CLASSPATH ]; then
+	export CLASSPATH=$HOME/Downloads/tla
+else
+	export CLASSPATH=$CLASSPATH:$HOME/Downloads/tla
+fi
+
+export GOPATH=$HOME/progrm/go
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOBIN
 
-alias vagrant_env="export VAGRANT_HOME=./vagrant.d/"
+export PATH=$PATH:$HOME/Downloads/flutter/bin:$HOME/Downloads/flutter/bin/cache/dart-sdk/bin/
+#export CDPATH=.:nikandfor:~/github.com/:~/rndcenter
 
-export PATH=$PATH:~/Downloads/protoc
+alias vagrant_env="export VAGRANT_HOME=./vagrant.d/"
+alias jsf="python -m json.tool"
+
+#export PATH=$PATH:~/Downloads/protoc
 
 # The next line updates PATH for the Google Cloud SDK.
-source '/home/nik/Downloads/google-cloud-sdk/path.bash.inc'
+#source '$HOME/Downloads/google-cloud-sdk/path.bash.inc'
 
 # The next line enables shell command completion for gcloud.
-source '/home/nik/Downloads/google-cloud-sdk/completion.bash.inc'
+#source '$HOME/Downloads/google-cloud-sdk/completion.bash.inc'
+
+# get relative path from directory
+function relpath {
+	python -c "import os.path; print os.path.relpath('$1', '$2')"
+}
+
+#source <(kubectl completion bash)
+
+cover() {
+	f=/tmp/cover.out
+	rm -f $f
+	go test "$@" -coverprofile $f
+	[ $(cat /tmp/cover.out | wc -l) -gt 1 ] && go tool cover -html $f
+}
+
+alias gochroma="chroma -l go -f terminal256 -s rrt"
+
+cgodoc() {
+	go doc "$@" | gochroma
+}
+
+export QSYS_ROOTDIR="$HOME/progrm/lib/quartus_lite/quartus/sopc_builder/bin"
+
+# OPAM configuration
+. $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+
+export GPG_TTY=$(tty)
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
