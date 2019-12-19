@@ -1,0 +1,43 @@
+# vim
+.*.swp
+.*.swo
+
+# hide all hidden files?
+.*
+
+a.out
+
+# python
+*.pyc
+
+# big binaries
+*.o
+*.a
+*.so
+*.deb
+*.rpm
+
+# logs, traces
+*.log
+*.bench
+*.pprof
+*.mprof
+*.trace
+*.txt
+*.json
+
+# golang
+vendor/
+*.test
+
+# dev
+log
+venv
+
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+
+*.crt
+*.cer
